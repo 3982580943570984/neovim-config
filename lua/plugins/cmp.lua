@@ -1,10 +1,10 @@
+--[[
 local cmp = require("cmp")
 
 cmp.setup({
 	snippet = {
-		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	window = {
@@ -20,17 +20,9 @@ cmp.setup({
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = "snippy" }, -- For snippy users.
+		{ name = "ultisnips" },
 	}, {
 		{ name = "buffer" },
 	}),
 })
-
--- Set up lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig")["clangd"].setup({
-	capabilities = capabilities,
-})
-require("lspconfig")["lua_ls"].setup({
-	capabilities = capabilities,
-})
+]]

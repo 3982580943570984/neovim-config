@@ -3,6 +3,7 @@
 	"snippets.userSnippetsDirectory": "~/AppData/Local/coc/ultisnips",
 	"inlayHint.enable": false,
 	"diagnostic.enable": false,
+	"coc.preferences.formatOnSave": true,
 	"clangd.fallbackFlags": [
 		"-std=c++2b",
 		"-I",

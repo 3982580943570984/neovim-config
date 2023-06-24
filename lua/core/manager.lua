@@ -5,62 +5,40 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+
+	--[[
+	{ "ms-jpq/coq_nvim", branch = "coq", event = "InsertEnter" },
+	{ "ms-jpq/coq.artifacts", branch = "artifacts", event = "InsertEnter" },
+	{ "ms-jpq/coq.thirdparty", branch = "3p", event = "InsertEnter" },
+	]]
+
+	{ "nvim-treesitter/nvim-treesitter", event = "VeryLazy" },
+	{ "williamboman/mason.nvim", build = ":MasonUpdate", event = "VeryLazy" },
+	{ "neovim/nvim-lspconfig" },
+	{ "neoclide/coc.nvim", branch = "release", event = "VeryLazy" },
+	{ "jose-elias-alvarez/null-ls.nvim", event = "VeryLazy" },
+	{ "lewis6991/gitsigns.nvim", event = "VeryLazy" },
+	{ "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
+	{ "windwp/nvim-autopairs", event = "InsertEnter" },
+	{ "numToStr/Comment.nvim", event = "VeryLazy" },
+	{ "kevinhwang91/nvim-ufo", dependencies = { "kevinhwang91/promise-async" } },
+	{ "andweeb/presence.nvim", event = "VeryLazy" },
+	{ "kaicataldo/material.vim", event = "VeryLazy" },
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
-	{ "nvim-treesitter/nvim-treesitter" },
-	{ "neovim/nvim-lspconfig" },
-	{
-		"williamboman/mason.nvim",
-		build = ":MasonUpdate",
-	},
-
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-cmdline" },
-	{ "hrsh7th/nvim-cmp" },
-	{ "lewis6991/gitsigns.nvim" },
-	{ "SirVer/ultisnips" },
-	{ "quangnguyen30192/cmp-nvim-ultisnips" },
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-
-	{ "ms-jpq/coq_nvim", branch = "coq" },
-	{ "ms-jpq/coq.artifacts", branch = "artifacts" },
-	{ "ms-jpq/coq.thirdparty", branch = "3p" },
-
-	{ "glepnir/dashboard-nvim", event = "VimEnter", dependencies = { { "nvim-tree/nvim-web-devicons" } } },
-	{ "akinsho/bufferline.nvim", version = "*", dependencies = { { "nvim-tree/nvim-web-devicons" } } },
-
-	{ "kaicataldo/material.vim" },
-
-	{ "jose-elias-alvarez/null-ls.nvim" },
-
-	{ "nvim-lualine/lualine.nvim", dependencies = {
-		"nvim-tree/nvim-web-devicons",
-	} },
-
-	{ "NvChad/nvim-colorizer.lua" },
-	{ "lukas-reineke/indent-blankline.nvim" },
-	{ "windwp/nvim-autopairs", event = "InsertEnter" },
-	{ "numToStr/Comment.nvim" },
-	{ "akinsho/toggleterm.nvim", version = "*", config = true },
-
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -69,9 +47,34 @@ require("lazy").setup({
 			vim.o.timeoutlen = 300
 		end,
 	},
-	{ "kevinhwang91/nvim-ufo", dependencies = { {
-		"kevinhwang91/promise-async",
-	} } },
-
-	{ "neoclide/coc.nvim", branch = "release" },
+	{
+		"akinsho/bufferline.nvim",
+		version = "*",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.1",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
 })
